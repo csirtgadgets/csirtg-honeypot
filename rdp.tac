@@ -9,6 +9,8 @@ from twisted.python import log
 from whiteface import observable
 from datetime import datetime
 import os
+from config import config
+from pprint import pprint
 
 LOG_FORMAT = '%(asctime)s - %(levelname)s - %(name)s[%(lineno)s] - %(message)s'
 
@@ -34,6 +36,8 @@ TOKEN = ''
 lastTS = ''
 contexts = {}
 
+cfg = config('rdp.yml')
+
 
 def log_it(peer):
     whiteface_log(peer)
@@ -52,7 +56,7 @@ def whiteface_log(peer):
         contexts[today][peer.host] = []
 
         log.msg('logging to whiteface...')
-        ret = observable.Observable(user=USER, feed=FEED, token=TOKEN, thing=peer.host,
+        ret = observable.Observable(user=cfg['user'], feed=cfg['feed'], token=cfg['token'], thing=peer.host,
                                             portlist=3389, protocol='tcp', tags='scanner,rdp').new()
 
         log.msg('logged to whiteface %s ' % ret['observable']['location'])
