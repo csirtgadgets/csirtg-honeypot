@@ -27,9 +27,9 @@ if os.name == 'posix' and os.getuid() == 0:
 
 # you MUST change these...
 interface = '0.0.0.0'
-USER = 'wes'
-FEED = 'scanners'
-TOKEN = '370cc52d744fbc2816da82f8af4b0230'
+USER = ''
+FEED = ''
+TOKEN = ''
 
 lastTS = ''
 contexts = {}
