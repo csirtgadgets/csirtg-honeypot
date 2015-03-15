@@ -81,13 +81,13 @@ class TerminalServices(Protocol):
                 logger.info("\tLogin: %s" % x224_data[6:])
                 if (lastTS != self.transport.getPeer().host):
                     lastTS = self.transport.getPeer().host
-                    thread.start_new_thread(log_it, (self.transport.getPeer().host))
+                    thread.start_new_thread(log_it, (self.transport.getPeer(),))
             else:
                 log.msg("\tX224 Unrecognized code:")
                 self.transport.loseConnection()
                 if (lastTS != self.transport.getPeer().host):
                     lastTS = self.transport.getPeer().host
-                    thread.start_new_thread(log_it, (self.transport.getPeer().host))
+                    thread.start_new_thread(log_it, (self.transport.getPeer(),))
         else:
             log.msg("Data inconsistent... dropping connection.")
             self.transport.loseConnection()
