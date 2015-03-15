@@ -28,3 +28,6 @@ twistd --version
 
 echo "Starting wf-rdp in the background..."
 twistd -y rdp.tac -l rdp.log --pidfile rdp.pid
+
+echo "Starting wf-vnc in the background..."
+twistd -y vnc.tac -l vnc.log --pidfile vnc.pid

@@ -1,12 +1,14 @@
 #!/bin/sh
 
-PIDFILE=rdp.pid
+PIDFILE="vnc.pid rdp.pid"
 
 cd $(dirname $0)
 
-PID=$(cat $PIDFILE 2>/dev/null)
+for P in $PIDFILE; do
+    PID=$(cat $P 2>/dev/null)
 
-if [ -n "$PID" ]; then
-  echo "Stopping wf-rdp...\n"
-  kill -TERM $PID
-fi
+    if [ -n "$PID" ]; then
+        echo "Stopping $PID...\n"
+        kill -TERM $PID
+    fi
+done
