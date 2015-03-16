@@ -53,16 +53,20 @@ def whiteface_log(peer):
     today = str(datetime.now().date())
 
     pprint(peer)
+    pprint(contexts)
+    print peer.host
 
     for c in contexts:
         if c != today:
             del contexts[c]
 
+    pprint(contexts)
+
     if not contexts.get(today):
         contexts[today] = {}
 
     if not contexts[today].get(peer.host):
-        contexts[today][peer.host] = []
+        contexts[today][peer.host] = 1
 
         log.msg('logging to whiteface...')
         ret = observable.Observable(user=cfg['user'], feed=cfg['feed'], token=cfg['token'], thing=peer.host,
