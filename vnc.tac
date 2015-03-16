@@ -72,6 +72,7 @@ def whiteface_log(peer):
 
 
 class Fake(Protocol):
+    global contexts
     def connectionMade(self):
         thread.start_new_thread(log_it, (self.transport.getPeer(),))
 
